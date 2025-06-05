@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# シフト管理ツールガイド
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+こちらは Gemini で作成した「シフト管理ツール」の管理リポジトリです。
+アプリは React で作成されています。
 
-## Available Scripts
+## アプリについて
+医療福祉業界の従業員のシフト管理を楽にするアプリです。
 
-In the project directory, you can run:
+### 手順
+以下の手順でシフト表を作成する。
+
+1. 専用のcsvファイルをアップロードする。
+1. 「常駐人数設定」を入力する。
+1. 該当の月に祝日がある場合は「祝日リスト」を入力する。
+1. 「シフト表を生成」ボタンを押す。
+1. 生成されたシフトを確認して、変えたければ「シフト表を生成」ボタンを再度押す。
+1. 確認して問題なければ「TSVファイルに出力」ボタンを押す。
+1. 出力されたファイルの中身を専用のスプレッドシート(シフト表)などに貼り付けてデザインを整える
+1. 完成したシフト表を従業員に共有する
+
+#### csvファイルのフォーマット
+`ID,Name,Date,Priority`ヘッダーを最初の行に必ず含めてください。それぞれ以下の意味です。
+
+- ID : 従業員の識別番号。なければ一意になる値を適当に割り振ってください。
+- Name : 従業員の名前。
+- Date : 従業員が希望休を取りたい日。YYYY-MM-DD の書式で記述してください。(例:`2025-06-08`)
+- Priority : 従業員が希望休を必ず取りたい日の場合は`TRUE`を入力してください。希望休の優先度が上がります。必ず休みを取れる訳ではありません。
+
+## コマンド
+
+開発者向けのコマンドの説明です。
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+ローカルでアプリを起動します。
+[http://localhost:8080](http://localhost:8080) からアクセスできます。
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+コードを変えた場合はリロードしてください。
+エラーはブラウザの管理ツールのコンソールで確認できます。
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+テストを実行します。現在はテストが書かれていません。
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+デプロイ用にソースコードをビルドします。デプロイ前に実行してください。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## デプロイ
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+`firebase deploy --only hosting` を実行するとクラウド環境へデプロイされます。
+アクセス用のURLはコンソールに表示されます。
